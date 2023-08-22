@@ -1,0 +1,31 @@
+{% extends 'layouts/auth.jinja2' %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+    <div class="min-h-screen flex justify-center items-center">
+        <div class="card md:w-2/6 w-4/5 bg-base-100 shadow-xl">
+            <div class="card-body">
+                <form action="{{ url_for('auth.login') }}" method="post" class="ajax-form" data-redirect="True">
+                    {{ form.csrf_token() }}
+                    <h1 class="card-title">Login!</h1>
+                    <p class="mb-6">Welcome back! Log in to your account.</p>
+                    <div class="form-control mb-3 w-full">
+                        <label for="username" class="label">Username</label>
+                        {{ form.username }}
+                        <p class="mt-2 text-sm text-red-600 username-feedback error-feedback hidden"></p>
+                    </div>
+                    <div class="form-control mb-3 w-full">
+                        <label for="password" class="label">Password</label>
+                        {{ form.password }}
+                        <p class="mt-2 text-sm text-red-600 password-feedback error-feedback hidden"></p>
+                    </div>
+                    <div class="card-actions justify-between items-center mt-6">
+                        <a href="{{ url_for('auth.register') }}">Not have an account?</a>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
